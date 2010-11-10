@@ -10,6 +10,11 @@
 #ifndef _OFX_SOFTKEY
 #define _OFX_SOFTKEY
 
+#define PADDING_TOP 0
+#define PADDING_RIGHT 1
+#define PADDING_BOTTOM 2
+#define PADDING_LEFT 3
+
 #include "ofMain.h"
 #include "ofxMSAInteractiveObject.h"
 
@@ -17,10 +22,13 @@
 class ofxSoftKey : public ofxMSAInteractiveObject {
 public:
 	
-	
+	bool isLastInRow;
+	int* padding;
 	
 	ofxSoftKey(char key);
 
+	void setPadding(int top, int right, int bottom, int left);
+	
 	ofxSoftKey& setKey(const char key);
 	ofxSoftKey& setTextColor(int c);
 	ofxSoftKey& setTextBGColor(int c);
@@ -48,6 +56,7 @@ protected:
 	
 	char key;
 	int textColor, textBGColor, borderColor, hoverColor, clickColor;
+	
 	
 };
 

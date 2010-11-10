@@ -22,13 +22,23 @@ ofxSoftKey::ofxSoftKey(char _key) {
 	borderColor = 0x000000;
 	hoverColor = 0x999999;
 	clickColor = 0xFF0000;
+	isLastInRow = false;
 	
 	disableAppEvents();
 	enableMouseEvents();
 	enableKeyEvents();
+	
+	padding = new int[4];
 }
 
 
+//--------------------------------------------------------------
+void ofxSoftKey::setPadding(int top, int right, int bottom, int left) {
+	padding[PADDING_TOP] = top;
+	padding[PADDING_RIGHT] = right;
+	padding[PADDING_BOTTOM] = bottom;
+	padding[PADDING_LEFT] = left;
+}
 
 #pragma mark APP EVENTS
 
@@ -142,7 +152,6 @@ void ofxSoftKey::onRelease(int x, int y, int button) {
 void ofxSoftKey::onReleaseOutside(int x, int y, int button) {
 
 }
-
 
 
 #pragma mark KEYBOARD INTERACTION

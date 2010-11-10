@@ -22,6 +22,7 @@ public:
 	~ofxSoftKeyboard();
 
 	void setLayout(int layout);
+	void addPadding(int top, int right, int bottom, int left);
 	void reset();
 	void draw(float x, float y);
 	ofxSoftKey& addKey(char c);
@@ -31,8 +32,7 @@ public:
 protected:
 	
 	int padding;
-	vector<ofxSoftKey*> keys;
-	vector<int> newlines;
+	vector<ofxSoftKey> keys;
 };
 
 #endif
