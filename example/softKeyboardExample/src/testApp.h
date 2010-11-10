@@ -24,6 +24,7 @@ class testApp : public ofBaseApp{
 	
 		ofTrueTypeFont 	vagRounded;
 		char eventString[255];
+		string message;
 };
 
 #endif

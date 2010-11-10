@@ -11,3 +11,11 @@ EXAMPLE
 ==================
 
 Move it to apps/addonsExamples
+
+
+TO DO
+==============
+- Padding doesn't work for top/bottom stuff.  only right and left.
+- ofxSoftKey::onPress should use ofNotifyEvent so that all registered listeners will get events
+- key click action
+- SHIFT key

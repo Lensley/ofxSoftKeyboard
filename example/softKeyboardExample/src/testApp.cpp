@@ -9,6 +9,8 @@ void testApp::setup(){
 	keyboard.setup( this, OFXSK_LAYOUT_KEYBOARD_FULL );
 	
 	sprintf(eventString, "framerate: %f", ofGetFrameRate());
+	
+	message = "";
 }
 
 //--------------------------------------------------------------
@@ -29,6 +31,13 @@ void testApp::draw(){
 	
 	ofSetColor(255,122,220);
 	vagRounded.drawString(eventString, 100,200);
+	
+	
+	ofSetColor(0xffffff);
+	vagRounded.drawString(message, 98,298);
+	
+	ofSetColor(255,122,220);
+	vagRounded.drawString(message, 100,300);
 
 }
 
@@ -42,6 +51,12 @@ void testApp::keyPressed(int key) {
 void testApp::keyReleased(int key) {
 	
 	sprintf(eventString, "keyReleased = %c (ASCII %i)", key, key);
+	
+	if(key == OF_KEY_BACKSPACE) {
+		message = message.substr(0, message.size()-1);
+	} else {
+		message += (char)key;
+	}
 }
 
 //--------------------------------------------------------------

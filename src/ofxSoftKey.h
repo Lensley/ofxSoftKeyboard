@@ -10,10 +10,17 @@
 #ifndef _OFX_SOFTKEY
 #define _OFX_SOFTKEY
 
-#define PADDING_TOP 0
-#define PADDING_RIGHT 1
-#define PADDING_BOTTOM 2
-#define PADDING_LEFT 3
+#define OFXSK_PADDING_TOP		0
+#define OFXSK_PADDING_RIGHT		1
+#define OFXSK_PADDING_BOTTOM	2
+#define OFXSK_PADDING_LEFT		3
+
+#define OFXSK_SPECIAL_KEYS 9999
+#define OFXSK_KEY_SHIFT 10000
+#define OFXSK_KEY_TAB 10001
+#define OFXSK_KEY_CAPS 10002
+#define OFXSK_KEY_DELETE 10003
+#define OFXSK_KEY_RETURN 10004
 
 #include "ofMain.h"
 #include "ofxMSAInteractiveObject.h"
@@ -25,11 +32,11 @@ public:
 	bool isLastInRow;
 	int* padding;
 	
-	ofxSoftKey(char key, testApp* testapp);
+	ofxSoftKey(int key, testApp* testapp);
 
-	void setPadding(int top, int right, int bottom, int left);
-	void padLeft(int left);
-	void padRight(int right);
+	ofxSoftKey& setPadding(int top, int right, int bottom, int left);
+	ofxSoftKey& padLeft(int left);
+	ofxSoftKey& padRight(int right);
 	
 	ofxSoftKey& setKey(const char key);
 	ofxSoftKey& setTextColor(int c);
@@ -38,26 +45,27 @@ public:
 	ofxSoftKey& setHoverColor(int c);
 	ofxSoftKey& setClickColor(int c);
 	
-	void setup();
-	void update();
+	//void setup();
+	//void update();
 	void draw();
-	void exit();
+	//void exit();
 	
-	void onRollOver(int x, int y);
-	void onRollOut();
-	void onMouseMove(int x, int y);
-	void onDragOver(int x, int y, int button);
-	void onDragOutside(int x, int y, int button);
+	//void onRollOver(int x, int y);
+	//void onRollOut();
+	//void onMouseMove(int x, int y);
+	//void onDragOver(int x, int y, int button);
+	//void onDragOutside(int x, int y, int button);
 	void onPress(int x, int y, int button);
 	void onRelease(int x, int y, int button);
 	void onReleaseOutside(int x, int y, int button);
-	void keyPressed( int key );
-	void keyReleased( int key );
+	//void keyPressed( int key );
+	//void keyReleased( int key );
 
 protected:
 	
 	testApp* testapp;
-	char key;
+	int key;
+	string label;
 	int textColor, textBGColor, borderColor, hoverColor, clickColor;
 	
 	

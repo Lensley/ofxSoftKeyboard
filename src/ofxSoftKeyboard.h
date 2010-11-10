@@ -7,6 +7,7 @@
  *
  */
 
+
 #ifndef _OFX_SOFTKEYBOARD
 #define _OFX_SOFTKEYBOARD
 
@@ -28,7 +29,7 @@ public:
 	void addPadding(int top, int right, int bottom, int left);
 	void reset();
 	void draw(float x, float y);
-	ofxSoftKey* addKey(char c);
+	ofxSoftKey& addKey(int c);
 	void newRow();
 	
 	

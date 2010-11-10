@@ -14,12 +14,12 @@
 #pragma mark CONSTRUCTORS
 
 //--------------------------------------------------------------
-ofxSoftKey::ofxSoftKey(char _key, testApp* _testapp) {
+ofxSoftKey::ofxSoftKey(int _key, testApp* _testapp) {
 	
 	testapp = _testapp;
+	key = _key;
 	
-	setKey(_key);
-	setSize(40, 40);
+	
 	
 	textColor = 0x000000;;
 	textBGColor = 0xCCCCCC;
@@ -30,45 +30,66 @@ ofxSoftKey::ofxSoftKey(char _key, testApp* _testapp) {
 	
 	disableAppEvents();
 	enableMouseEvents();
-	enableKeyEvents();
 	
 	padding = new int[4];
 	setPadding(5, 5, 5, 5);
+
+	switch(_key) {
+		case OFXSK_KEY_SHIFT:
+			label = "shift";
+			setSize(115, 40);
+			break;
+		case OFXSK_KEY_TAB: 
+			label = "tab";
+			setSize(70, 40);
+			break;
+		case OFXSK_KEY_CAPS: 
+			label = "caps";
+			setSize(85, 40);
+			break;
+		case OFXSK_KEY_DELETE: 
+			label = "delete";
+			setSize(85, 40);
+			break;
+		case OFXSK_KEY_RETURN: 
+			label = "return";
+			setSize(85, 40);
+			break;
+		default:
+			label = string(1, key);
+			setSize(40, 40);
+			break;
+	}
 }
+
 
 #pragma mark PADDING
 
 //--------------------------------------------------------------
-void ofxSoftKey::setPadding(int top, int right, int bottom, int left) {
-	padding[PADDING_TOP] = top;
-	padding[PADDING_RIGHT] = right;
-	padding[PADDING_BOTTOM] = bottom;
-	padding[PADDING_LEFT] = left;
+ofxSoftKey& ofxSoftKey::setPadding(int top, int right, int bottom, int left) {
+	padding[OFXSK_PADDING_TOP] = top;
+	padding[OFXSK_PADDING_RIGHT] = right;
+	padding[OFXSK_PADDING_BOTTOM] = bottom;
+	padding[OFXSK_PADDING_LEFT] = left;
+	return *this;
 }
 
 //--------------------------------------------------------------
-void ofxSoftKey::padLeft(int left) {
-	padding[PADDING_LEFT] += left;
+ofxSoftKey& ofxSoftKey::padLeft(int left) {
+	padding[OFXSK_PADDING_LEFT] += left;
+	return *this;
 }
 	
 //--------------------------------------------------------------
-void ofxSoftKey::padRight(int right) {
-	padding[PADDING_RIGHT] += right;
+ofxSoftKey& ofxSoftKey::padRight(int right) {
+	padding[OFXSK_PADDING_RIGHT] += right;
+	return *this;
 }
+
+
 
 #pragma mark APP EVENTS
 
-
-//--------------------------------------------------------------
-void ofxSoftKey::setup() {
-	
-}
-
-
-//--------------------------------------------------------------
-void ofxSoftKey::update() {
-	
-}
 
 
 //--------------------------------------------------------------
@@ -87,39 +108,35 @@ void ofxSoftKey::draw() {
 	
 	// Draw the actual letter
 	ofSetColor(textColor);
-	ofDrawBitmapString(string(1, key), x+width-20, y+height-10);
+	ofDrawBitmapString(label, x+10, y+height-10);
+
 }
 
-
-//--------------------------------------------------------------
-void ofxSoftKey::exit() {
-	
-}
 
 
 
 #pragma mark SETTERS
 
 //--------------------------------------------------------------
-ofxSoftKey &ofxSoftKey::setKey(char key) {
+ofxSoftKey& ofxSoftKey::setKey(char key) {
 	this->key = key;
 	return *this;
 }
 
 //--------------------------------------------------------------
-ofxSoftKey &ofxSoftKey::setTextColor(int c) {
+ofxSoftKey& ofxSoftKey::setTextColor(int c) {
 	this->textColor = c;
 	return *this;
 }
 
 //--------------------------------------------------------------
-ofxSoftKey &ofxSoftKey::setTextBGColor(int c) {
+ofxSoftKey& ofxSoftKey::setTextBGColor(int c) {
 	this->textBGColor = c;
 	return *this;
 }
 
 //--------------------------------------------------------------
-ofxSoftKey &ofxSoftKey::setBorderColor(int c) {
+ofxSoftKey& ofxSoftKey::setBorderColor(int c) {
 	this->borderColor = c;
 	return *this;
 }
@@ -130,59 +147,59 @@ ofxSoftKey &ofxSoftKey::setBorderColor(int c) {
 
 
 //--------------------------------------------------------------
-void ofxSoftKey::onRollOver(int x, int y) {
-	cout << "over!" << endl;
-}
-
-//--------------------------------------------------------------
-void ofxSoftKey::onRollOut() {
-
-}
-
-//--------------------------------------------------------------
-void ofxSoftKey::onMouseMove(int x, int y) {
-
-}
-
-//--------------------------------------------------------------
-void ofxSoftKey::onDragOver(int x, int y, int button) {
-
-}
-
-//--------------------------------------------------------------
-void ofxSoftKey::onDragOutside(int x, int y, int button) {
-
-}
-
-//--------------------------------------------------------------
 void ofxSoftKey::onPress(int x, int y, int button) {
-
-	testapp->keyPressed((int)key);
+	
+	
+	switch(key) {
+		case OFXSK_KEY_SHIFT:
+			
+			break;
+		case OFXSK_KEY_TAB: 
+			testapp->keyPressed('\t');
+			break;
+		case OFXSK_KEY_CAPS: 
+			
+			break;
+		case OFXSK_KEY_DELETE: 
+			testapp->keyPressed(OF_KEY_BACKSPACE);
+			break;
+		case OFXSK_KEY_RETURN: 
+			testapp->keyPressed('\n');
+			break;
+		default:
+			testapp->keyPressed((int)key);
+			break;
+	}
 	//ofNotifyEvent(ofEvents.keyPressed, (int)key, testapp);
 }
 
 //--------------------------------------------------------------
 void ofxSoftKey::onRelease(int x, int y, int button) {
 	
-	testapp->keyReleased((int)key);
+	switch(key) {
+		case OFXSK_KEY_SHIFT:
+			
+			break;
+		case OFXSK_KEY_TAB: 
+			testapp->keyReleased('\t');
+			break;
+		case OFXSK_KEY_CAPS: 
+			
+			break;
+		case OFXSK_KEY_DELETE: 
+			testapp->keyReleased(OF_KEY_BACKSPACE);
+			break;
+		case OFXSK_KEY_RETURN: 
+			testapp->keyReleased('\n');
+			break;
+		default:
+			testapp->keyReleased((int)key);
+			break;
+	}
 	//ofNotifyEvent(ofEvents.keyReleased, (int)key, testapp));
 }
 
 //--------------------------------------------------------------
 void ofxSoftKey::onReleaseOutside(int x, int y, int button) {
-
-}
-
-
-#pragma mark KEYBOARD INTERACTION
-
-//--------------------------------------------------------------
-void ofxSoftKey::keyPressed( int key ) {
-	
-}
-
-//--------------------------------------------------------------
-void ofxSoftKey::keyReleased( int key ) {
-	
 
 }
