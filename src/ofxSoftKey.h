@@ -18,16 +18,18 @@
 #include "ofMain.h"
 #include "ofxMSAInteractiveObject.h"
 
-
+class testApp;
 class ofxSoftKey : public ofxMSAInteractiveObject {
 public:
 	
 	bool isLastInRow;
 	int* padding;
 	
-	ofxSoftKey(char key);
+	ofxSoftKey(char key, testApp* testapp);
 
 	void setPadding(int top, int right, int bottom, int left);
+	void padLeft(int left);
+	void padRight(int right);
 	
 	ofxSoftKey& setKey(const char key);
 	ofxSoftKey& setTextColor(int c);
@@ -54,6 +56,7 @@ public:
 
 protected:
 	
+	testApp* testapp;
 	char key;
 	int textColor, textBGColor, borderColor, hoverColor, clickColor;
 	

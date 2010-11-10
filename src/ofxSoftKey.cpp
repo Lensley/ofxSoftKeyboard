@@ -8,13 +8,17 @@
  */
 
 #include "ofxSoftKey.h"
+#include "testApp.h"
+
 
 #pragma mark CONSTRUCTORS
 
 //--------------------------------------------------------------
-ofxSoftKey::ofxSoftKey(char _key) {
+ofxSoftKey::ofxSoftKey(char _key, testApp* _testapp) {
+	
+	testapp = _testapp;
+	
 	setKey(_key);
-	setPos(0, 0);
 	setSize(40, 40);
 	
 	textColor = 0x000000;;
@@ -29,8 +33,10 @@ ofxSoftKey::ofxSoftKey(char _key) {
 	enableKeyEvents();
 	
 	padding = new int[4];
+	setPadding(5, 5, 5, 5);
 }
 
+#pragma mark PADDING
 
 //--------------------------------------------------------------
 void ofxSoftKey::setPadding(int top, int right, int bottom, int left) {
@@ -38,6 +44,16 @@ void ofxSoftKey::setPadding(int top, int right, int bottom, int left) {
 	padding[PADDING_RIGHT] = right;
 	padding[PADDING_BOTTOM] = bottom;
 	padding[PADDING_LEFT] = left;
+}
+
+//--------------------------------------------------------------
+void ofxSoftKey::padLeft(int left) {
+	padding[PADDING_LEFT] += left;
+}
+	
+//--------------------------------------------------------------
+void ofxSoftKey::padRight(int right) {
+	padding[PADDING_RIGHT] += right;
 }
 
 #pragma mark APP EVENTS
@@ -115,7 +131,7 @@ ofxSoftKey &ofxSoftKey::setBorderColor(int c) {
 
 //--------------------------------------------------------------
 void ofxSoftKey::onRollOver(int x, int y) {
-	
+	cout << "over!" << endl;
 }
 
 //--------------------------------------------------------------
@@ -141,11 +157,15 @@ void ofxSoftKey::onDragOutside(int x, int y, int button) {
 //--------------------------------------------------------------
 void ofxSoftKey::onPress(int x, int y, int button) {
 
+	testapp->keyPressed((int)key);
+	//ofNotifyEvent(ofEvents.keyPressed, (int)key, testapp);
 }
 
 //--------------------------------------------------------------
 void ofxSoftKey::onRelease(int x, int y, int button) {
-
+	
+	testapp->keyReleased((int)key);
+	//ofNotifyEvent(ofEvents.keyReleased, (int)key, testapp));
 }
 
 //--------------------------------------------------------------
@@ -158,10 +178,11 @@ void ofxSoftKey::onReleaseOutside(int x, int y, int button) {
 
 //--------------------------------------------------------------
 void ofxSoftKey::keyPressed( int key ) {
-
+	
 }
 
 //--------------------------------------------------------------
 void ofxSoftKey::keyReleased( int key ) {
+	
 
 }

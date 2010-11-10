@@ -10,19 +10,23 @@
 #include "ofxSoftKeyboard.h"
 
 ofxSoftKeyboard::ofxSoftKeyboard() {
-
-	padding = 10;
-	setLayout(OFXSK_LAYOUT_KEYBOARD_FULL);
+	
 }
 
 //--------------------------------------------------------------
 ofxSoftKeyboard::~ofxSoftKeyboard() {
-	
-	// TO DO:  delete keys
 	for(int i=0; i<keys.size(); i++) {
-		//delete keys[i];
+		delete keys[i];
 	}
 }
+
+//--------------------------------------------------------------
+void ofxSoftKeyboard::setup( testApp* _testapp, int layout ) {
+	
+	testapp = _testapp;
+	setLayout(layout);
+}
+
 
 //--------------------------------------------------------------
 void ofxSoftKeyboard::setLayout(int layout) {
@@ -38,8 +42,8 @@ void ofxSoftKeyboard::setLayout(int layout) {
 			break;
 		case OFXSK_LAYOUT_KEYBOARD_FULL:
 			addKey('q'); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey('['); addKey(']'); newRow();
-			addPadding(0,0,0,10); addKey('a'); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(';'); addKey('\''); addKey(OF_KEY_RETURN); newRow();
-			addPadding(0,0,0,20); addKey('z'); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); addKey(','); addKey('.'); addKey('/'); newRow();
+			addKey('a')->padLeft(10); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(';'); addKey('\''); newRow();
+			addKey('z')->padLeft(20); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); addKey(','); addKey('.'); addKey('/'); newRow();
 			break;
 	}
 }
@@ -50,43 +54,40 @@ void ofxSoftKeyboard::reset() {
 }
 
 //--------------------------------------------------------------
-ofxSoftKey& ofxSoftKeyboard::addKey(char c) {
+ofxSoftKey* ofxSoftKeyboard::addKey(char c) {
 	
-	keys.push_back( ofxSoftKey(c) );
-	keys.back().setPadding(padding, padding, padding, padding);
+	ofxSoftKey* key = new ofxSoftKey(c, testapp );
+	key->setPadding(10,10,10,10);
+	keys.push_back( key );
 	return keys.back();
 }
 
 //--------------------------------------------------------------
 void ofxSoftKeyboard::newRow() {
 	
-	keys.back().isLastInRow = true;
-}
-
-//--------------------------------------------------------------
-void ofxSoftKeyboard::addPadding(int top, int right, int bottom, int left) {
-	
-	keys.back().setPadding(padding+top, padding+right, padding+bottom, padding+left);
+	keys.back()->isLastInRow = true;
 }
 
 //--------------------------------------------------------------
 void ofxSoftKeyboard::draw(float x, float y) {
 	
-	int j=0;
 	int xpos = x;
 	int ypos = y;
+	
 	for(int i=0; i<keys.size(); i++)
 	{
-		keys[i].setPos(xpos, ypos);
-		keys[i].draw();
-		if(keys[i].isLastInRow ) {
-			j++;
-			xpos =  x;
-			ypos += keys[i].height+ keys[i].padding[PADDING_BOTTOM];
-		} else {
-			xpos += keys[i].width;
-		}
+		xpos += keys[i]->padding[PADDING_LEFT];
 		
-		xpos +=  keys[i].padding[PADDING_RIGHT];
+		keys[i]->setPos(xpos, ypos);
+		keys[i]->draw();
+		
+		if(keys[i]->isLastInRow) {
+
+			xpos  = x;
+			ypos += keys[i]->height + keys[i]->padding[PADDING_BOTTOM];
+			
+		} else {
+			xpos += keys[i]->width + keys[i]->padding[PADDING_RIGHT];
+		}
 	}
 }
