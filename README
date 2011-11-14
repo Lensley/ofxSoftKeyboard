@@ -2,16 +2,14 @@
 REQUIREMENTS
 ==================
 
-ofxMSAInteractiveObject
+ofxMSAInteractiveObject is hosted on github here
 
-http://code.google.com/p/ofxmsaof/wiki/ofxMSAInteractiveObject
-
+https://github.com/Flightphase/ofxMSAInteractiveObject
 
 EXAMPLE
 ==================
 
-Move example/softKeyboardExample to apps/addonsExamples
-
+Just shows keyboard
 
 TO DO
 ==============
@@ -19,3 +17,10 @@ TO DO
 - ofxSoftKey::onPress should use ofNotifyEvent so that all registered listeners will get events
 - key click action (click color, etc) SOUND?
 - SHIFT key
+
+HISTORY
+==============
+
+originally by Jeff Crouse for Lensley. 
+
+Updated to 007 by James George 
