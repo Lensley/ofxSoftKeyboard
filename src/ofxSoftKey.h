@@ -32,7 +32,7 @@ public:
 	bool isLastInRow;
 	int* padding;
 	
-	ofxSoftKey(int key, testApp* testapp);
+	ofxSoftKey(int key, ofBaseApp* testapp);
 
 	ofxSoftKey& setPadding(int top, int right, int bottom, int left);
 	ofxSoftKey& padLeft(int left);
@@ -63,7 +63,7 @@ public:
 
 protected:
 	
-	testApp* testapp;
+	ofBaseApp* testapp;
 	int key;
 	string label;
 	int textColor, textBGColor, borderColor, hoverColor, clickColor;

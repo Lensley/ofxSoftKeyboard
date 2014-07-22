@@ -24,7 +24,7 @@ public:
 	ofxSoftKeyboard();
 	~ofxSoftKeyboard();
 
-	void setup( testApp* testapp, int layout );
+	void setup( ofBaseApp* testapp, int layout );
 	void setLayout(int layout);
 	void addPadding(int top, int right, int bottom, int left);
 	void reset();
@@ -35,7 +35,7 @@ public:
 	
 protected:
 	
-	testApp* testapp;
+	ofBaseApp* testapp;
 	vector<ofxSoftKey*> keys;
 	
 };

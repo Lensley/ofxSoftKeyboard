@@ -8,13 +8,11 @@
  */
 
 #include "ofxSoftKey.h"
-#include "testApp.h"
-
 
 #pragma mark CONSTRUCTORS
 
 //--------------------------------------------------------------
-ofxSoftKey::ofxSoftKey(int _key, testApp* _testapp) {
+ofxSoftKey::ofxSoftKey(int _key, ofBaseApp* _testapp) {
 	
 	testapp = _testapp;
 	key = _key;
