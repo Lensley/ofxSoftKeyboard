@@ -95,17 +95,17 @@ void ofxSoftKey::draw() {
 	
 	// Draw the background
 	ofFill();
-	if(isMouseOver()) ofSetColor(hoverColor);
-	else ofSetColor(textBGColor);
+	if(isMouseOver()) ofSetHexColor(hoverColor);
+	else ofSetHexColor(textBGColor);
 	ofRect(x, y, width, height);
 	
 	// Draw the outline.
 	ofNoFill();
-	ofSetColor(borderColor);
+	ofSetHexColor(borderColor);
 	ofRect( x, y, width, height );
 	
 	// Draw the actual letter
-	ofSetColor(textColor);
+	ofSetHexColor(textColor);
 	ofDrawBitmapString(label, x+10, y+height-10);
 
 }
