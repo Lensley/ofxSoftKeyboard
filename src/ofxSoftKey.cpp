@@ -95,7 +95,7 @@ void ofxSoftKey::draw() {
 	
 	// Draw the background
 	ofFill();
-	if(_mouseOver) ofSetColor(hoverColor);
+	if(isMouseOver()) ofSetColor(hoverColor);
 	else ofSetColor(textBGColor);
 	ofRect(x, y, width, height);
 	
