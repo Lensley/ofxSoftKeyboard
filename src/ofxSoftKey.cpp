@@ -8,24 +8,21 @@
  */
 
 #include "ofxSoftKey.h"
-#include "testApp.h"
-
 
 #pragma mark CONSTRUCTORS
 
 //--------------------------------------------------------------
-ofxSoftKey::ofxSoftKey(int _key, testApp* _testapp) {
+ofxSoftKey::ofxSoftKey(int _key, ofBaseApp* _testapp) {
 	
 	testapp = _testapp;
 	key = _key;
+	roundness = 0;
 	
-	
-	
-	textColor = 0x000000;;
-	textBGColor = 0xCCCCCC;
-	borderColor = 0x000000;
-	hoverColor = 0x999999;
-	clickColor = 0xFF0000;
+	textColor = ofColor(0);
+	textBGColor = ofColor(204);
+	borderColor = ofColor(0);
+	hoverColor = ofColor(153);
+	clickColor = ofColor(255, 0, 0);
 	isLastInRow = false;
 	
 	disableAppEvents();
@@ -54,6 +51,22 @@ ofxSoftKey::ofxSoftKey(int _key, testApp* _testapp) {
 		case OFXSK_KEY_RETURN: 
 			label = "return";
 			setSize(85, 40);
+			break;
+		case OFXSK_KEY_AT:
+			label = "@";
+			setSize(40, 40);
+			break;
+		case OFXSK_KEY_DOTCOM:
+			label = ".COM";
+			setSize(40, 40);
+			break;
+		case OFXSK_KEY_DOTNET:
+			label = ".NET";
+			setSize(40, 40);
+			break;
+		case OFXSK_KEY_DOTORG:
+			label = ".ORG";
+			setSize(40, 40);
 			break;
 		default:
 			label = string(1, key);
@@ -97,14 +110,14 @@ void ofxSoftKey::draw() {
 	
 	// Draw the background
 	ofFill();
-	if(_mouseOver) ofSetColor(hoverColor);
+	if(isMouseOver()) ofSetColor(hoverColor);
 	else ofSetColor(textBGColor);
-	ofRect(x, y, width, height);
+	ofRectRounded(x, y, width, height, roundness);
 	
 	// Draw the outline.
 	ofNoFill();
 	ofSetColor(borderColor);
-	ofRect( x, y, width, height );
+	ofRectRounded(x, y, width, height, roundness);
 	
 	// Draw the actual letter
 	ofSetColor(textColor);
@@ -124,20 +137,38 @@ ofxSoftKey& ofxSoftKey::setKey(char key) {
 }
 
 //--------------------------------------------------------------
-ofxSoftKey& ofxSoftKey::setTextColor(int c) {
+ofxSoftKey& ofxSoftKey::setTextColor(ofColor c) {
 	this->textColor = c;
 	return *this;
 }
 
 //--------------------------------------------------------------
-ofxSoftKey& ofxSoftKey::setTextBGColor(int c) {
+ofxSoftKey& ofxSoftKey::setTextBGColor(ofColor c) {
 	this->textBGColor = c;
 	return *this;
 }
 
 //--------------------------------------------------------------
-ofxSoftKey& ofxSoftKey::setBorderColor(int c) {
+ofxSoftKey& ofxSoftKey::setBorderColor(ofColor c) {
 	this->borderColor = c;
+	return *this;
+}
+
+//--------------------------------------------------------------
+ofxSoftKey& ofxSoftKey::setHoverColor(ofColor c) {
+	this->hoverColor = c;
+	return *this;
+}
+
+//--------------------------------------------------------------
+ofxSoftKey& ofxSoftKey::setClickColor(ofColor c) {
+	this->clickColor = c;
+	return *this;
+}
+
+//--------------------------------------------------------------
+ofxSoftKey& ofxSoftKey::setRoundness(float r) {
+	this->roundness = r;
 	return *this;
 }
 
@@ -166,6 +197,27 @@ void ofxSoftKey::onPress(int x, int y, int button) {
 		case OFXSK_KEY_RETURN: 
 			testapp->keyPressed('\n');
 			break;
+		case OFXSK_KEY_AT:
+			testapp->keyPressed('@');
+			break;
+		case OFXSK_KEY_DOTCOM:
+			testapp->keyPressed('.');
+			testapp->keyPressed('c');
+			testapp->keyPressed('o');
+			testapp->keyPressed('m');
+			break;
+		case OFXSK_KEY_DOTNET:
+			testapp->keyPressed('.');
+			testapp->keyPressed('n');
+			testapp->keyPressed('e');
+			testapp->keyPressed('t');
+			break;
+		case OFXSK_KEY_DOTORG:
+			testapp->keyPressed('.');
+			testapp->keyPressed('o');
+			testapp->keyPressed('r');
+			testapp->keyPressed('g');
+			break;
 		default:
 			testapp->keyPressed((int)key);
 			break;
@@ -191,6 +243,27 @@ void ofxSoftKey::onRelease(int x, int y, int button) {
 			break;
 		case OFXSK_KEY_RETURN: 
 			testapp->keyReleased('\n');
+			break;
+		case OFXSK_KEY_AT:
+			testapp->keyReleased('@');
+			break;
+		case OFXSK_KEY_DOTCOM:
+			testapp->keyReleased('.');
+			testapp->keyReleased('c');
+			testapp->keyReleased('o');
+			testapp->keyReleased('m');
+			break;
+		case OFXSK_KEY_DOTNET:
+			testapp->keyReleased('.');
+			testapp->keyReleased('n');
+			testapp->keyReleased('e');
+			testapp->keyReleased('t');
+			break;
+		case OFXSK_KEY_DOTORG:
+			testapp->keyReleased('.');
+			testapp->keyReleased('o');
+			testapp->keyReleased('r');
+			testapp->keyReleased('g');
 			break;
 		default:
 			testapp->keyReleased((int)key);

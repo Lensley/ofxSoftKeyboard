@@ -21,6 +21,10 @@
 #define OFXSK_KEY_CAPS 10002
 #define OFXSK_KEY_DELETE 10003
 #define OFXSK_KEY_RETURN 10004
+#define OFXSK_KEY_AT 10005
+#define OFXSK_KEY_DOTCOM 10100
+#define OFXSK_KEY_DOTNET 10101
+#define OFXSK_KEY_DOTORG 10102
 
 #include "ofMain.h"
 #include "ofxMSAInteractiveObject.h"
@@ -32,18 +36,19 @@ public:
 	bool isLastInRow;
 	int* padding;
 	
-	ofxSoftKey(int key, testApp* testapp);
+	ofxSoftKey(int key, ofBaseApp* testapp);
 
 	ofxSoftKey& setPadding(int top, int right, int bottom, int left);
 	ofxSoftKey& padLeft(int left);
 	ofxSoftKey& padRight(int right);
 	
 	ofxSoftKey& setKey(const char key);
-	ofxSoftKey& setTextColor(int c);
-	ofxSoftKey& setTextBGColor(int c);
-	ofxSoftKey& setBorderColor(int c);
-	ofxSoftKey& setHoverColor(int c);
-	ofxSoftKey& setClickColor(int c);
+	ofxSoftKey& setTextColor(ofColor c);
+	ofxSoftKey& setTextBGColor(ofColor c);
+	ofxSoftKey& setBorderColor(ofColor c);
+	ofxSoftKey& setHoverColor(ofColor c);
+	ofxSoftKey& setClickColor(ofColor c);
+	ofxSoftKey& setRoundness(float r);
 	
 	//void setup();
 	//void update();
@@ -63,10 +68,11 @@ public:
 
 protected:
 	
-	testApp* testapp;
+	ofBaseApp* testapp;
 	int key;
 	string label;
-	int textColor, textBGColor, borderColor, hoverColor, clickColor;
+	float roundness;
+	ofColor textColor, textBGColor, borderColor, hoverColor, clickColor;
 	
 	
 };
