@@ -31,10 +31,16 @@ public:
 	void draw(float x, float y);
 	ofxSoftKey& addKey(int c);
 	void newRow();
+
+	void setPadding(int top, int right, int bottom, int left);
+	void setTextColor(int c);
+	void setTextBGColor(int c);
+	void setBorderColor(int c);
+	void setHoverColor(int c);
+	void setClickColor(int c);
 	
 	
 protected:
-	
 	ofBaseApp* testapp;
 	vector<ofxSoftKey*> keys;
 	
