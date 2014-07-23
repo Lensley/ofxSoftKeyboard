@@ -16,8 +16,7 @@ ofxSoftKey::ofxSoftKey(int _key, ofBaseApp* _testapp) {
 	
 	testapp = _testapp;
 	key = _key;
-	
-	
+	roundness = 0;
 	
 	textColor = ofColor(0);
 	textBGColor = ofColor(204);
@@ -113,12 +112,12 @@ void ofxSoftKey::draw() {
 	ofFill();
 	if(isMouseOver()) ofSetColor(hoverColor);
 	else ofSetColor(textBGColor);
-	ofRect(x, y, width, height);
+	ofRectRounded(x, y, width, height, roundness);
 	
 	// Draw the outline.
 	ofNoFill();
 	ofSetColor(borderColor);
-	ofRect( x, y, width, height );
+	ofRectRounded(x, y, width, height, roundness);
 	
 	// Draw the actual letter
 	ofSetColor(textColor);
@@ -164,6 +163,12 @@ ofxSoftKey& ofxSoftKey::setHoverColor(ofColor c) {
 //--------------------------------------------------------------
 ofxSoftKey& ofxSoftKey::setClickColor(ofColor c) {
 	this->clickColor = c;
+	return *this;
+}
+
+//--------------------------------------------------------------
+ofxSoftKey& ofxSoftKey::setRoundness(float r) {
+	this->roundness = r;
 	return *this;
 }
 

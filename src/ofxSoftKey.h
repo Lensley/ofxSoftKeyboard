@@ -48,6 +48,7 @@ public:
 	ofxSoftKey& setBorderColor(ofColor c);
 	ofxSoftKey& setHoverColor(ofColor c);
 	ofxSoftKey& setClickColor(ofColor c);
+	ofxSoftKey& setRoundness(float r);
 	
 	//void setup();
 	//void update();
@@ -70,6 +71,7 @@ protected:
 	ofBaseApp* testapp;
 	int key;
 	string label;
+	float roundness;
 	ofColor textColor, textBGColor, borderColor, hoverColor, clickColor;
 	
 	
