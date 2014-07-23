@@ -51,11 +51,11 @@ void ofxSoftKeyboard::setLayout(int layout) {
 			break;
 
 		case OFXSK_LAYOUT_KEYBOARD_EMAIL:
-			addKey('1'); addKey('2'); addKey('3'); addKey('4'); addKey('5'); addKey('6'); addKey('7'); addKey('8'); addKey('9'); addKey('0'); addKey(OFXSK_KEY_DELETE); newRow();
+			addKey('1').padLeft(30); addKey('2'); addKey('3'); addKey('4'); addKey('5'); addKey('6'); addKey('7'); addKey('8'); addKey('9'); addKey('0'); addKey(OFXSK_KEY_DELETE).setSize(40,40); newRow();
 			addKey('q'); addKey('w'); addKey('e'); addKey('r'); addKey('t'); addKey('y'); addKey('u'); addKey('i'); addKey('o'); addKey('p'); addKey(OFXSK_KEY_DOTCOM); newRow();
-			addKey('a'); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(OFXSK_KEY_AT); addKey(OFXSK_KEY_DOTNET); newRow();
+			addKey('a').padLeft(30); addKey('s'); addKey('d'); addKey('f'); addKey('g'); addKey('h'); addKey('j'); addKey('k'); addKey('l'); addKey(OFXSK_KEY_AT); addKey(OFXSK_KEY_DOTNET); newRow();
 			addKey('z'); addKey('x'); addKey('c'); addKey('v'); addKey('b'); addKey('n'); addKey('m'); addKey('.'); addKey('_'); addKey('-'); addKey(OFXSK_KEY_DOTORG); newRow();
-			addKey(' ').padLeft(254).setSize(300, 40);
+			addKey(' ').padLeft(130).setSize(300, 40);
 			break;
 	}
 }
@@ -144,5 +144,11 @@ void ofxSoftKeyboard::setHoverColor(ofColor c){
 void ofxSoftKeyboard::setClickColor(ofColor c){
 	for(auto &key: keys){
 		key->setClickColor( c );
+	}
+}
+
+void ofxSoftKeyboard::setRoundness(float r){
+	for(auto &key: keys){
+		key->setRoundness(r);
 	}
 }

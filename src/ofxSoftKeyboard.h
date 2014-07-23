@@ -39,6 +39,7 @@ public:
 	void setBorderColor(ofColor c);
 	void setHoverColor(ofColor c);
 	void setClickColor(ofColor c);
+	void setRoundness(float r);
 	
 	
 protected:
