@@ -139,6 +139,18 @@ ofxSoftKey& ofxSoftKey::setBorderColor(int c) {
 	return *this;
 }
 
+//--------------------------------------------------------------
+ofxSoftKey& ofxSoftKey::setHoverColor(int c) {
+	this->hoverColor = c;
+	return *this;
+}
+
+//--------------------------------------------------------------
+ofxSoftKey& ofxSoftKey::setClickColor(int c) {
+	this->clickColor = c;
+	return *this;
+}
+
 
 
 #pragma mark MOUSE INTERACTION
