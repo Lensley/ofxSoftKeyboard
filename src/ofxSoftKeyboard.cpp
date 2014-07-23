@@ -105,35 +105,35 @@ void ofxSoftKeyboard::setPadding(int top, int right, int bottom, int left) {
 
 //--------------------------------------------------------------
 
-void ofxSoftKeyboard::setTextColor(int c){
+void ofxSoftKeyboard::setTextColor(ofColor c){
 	for(auto &key: keys){
 		key->setTextColor( c );
 	}
 }
 
 //--------------------------------------------------------------
-void ofxSoftKeyboard::setTextBGColor(int c){
+void ofxSoftKeyboard::setTextBGColor(ofColor c){
 	for(auto &key: keys){
 		key->setTextBGColor( c );
 	}
 }
 
 //--------------------------------------------------------------
-void ofxSoftKeyboard::setBorderColor(int c){
+void ofxSoftKeyboard::setBorderColor(ofColor c){
 	for(auto &key: keys){
 		key->setBorderColor( c );
 	}
 }
 
 //--------------------------------------------------------------
-void ofxSoftKeyboard::setHoverColor(int c){
+void ofxSoftKeyboard::setHoverColor(ofColor c){
 	for(auto &key: keys){
 		key->setHoverColor( c );
 	}
 }
 
 //--------------------------------------------------------------
-void ofxSoftKeyboard::setClickColor(int c){
+void ofxSoftKeyboard::setClickColor(ofColor c){
 	for(auto &key: keys){
 		key->setClickColor( c );
 	}

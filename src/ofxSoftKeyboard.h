@@ -33,11 +33,11 @@ public:
 	void newRow();
 
 	void setPadding(int top, int right, int bottom, int left);
-	void setTextColor(int c);
-	void setTextBGColor(int c);
-	void setBorderColor(int c);
-	void setHoverColor(int c);
-	void setClickColor(int c);
+	void setTextColor(ofColor c);
+	void setTextBGColor(ofColor c);
+	void setBorderColor(ofColor c);
+	void setHoverColor(ofColor c);
+	void setClickColor(ofColor c);
 	
 	
 protected:

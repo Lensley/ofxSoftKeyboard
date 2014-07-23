@@ -39,11 +39,11 @@ public:
 	ofxSoftKey& padRight(int right);
 	
 	ofxSoftKey& setKey(const char key);
-	ofxSoftKey& setTextColor(int c);
-	ofxSoftKey& setTextBGColor(int c);
-	ofxSoftKey& setBorderColor(int c);
-	ofxSoftKey& setHoverColor(int c);
-	ofxSoftKey& setClickColor(int c);
+	ofxSoftKey& setTextColor(ofColor c);
+	ofxSoftKey& setTextBGColor(ofColor c);
+	ofxSoftKey& setBorderColor(ofColor c);
+	ofxSoftKey& setHoverColor(ofColor c);
+	ofxSoftKey& setClickColor(ofColor c);
 	
 	//void setup();
 	//void update();
@@ -66,7 +66,7 @@ protected:
 	ofBaseApp* testapp;
 	int key;
 	string label;
-	int textColor, textBGColor, borderColor, hoverColor, clickColor;
+	ofColor textColor, textBGColor, borderColor, hoverColor, clickColor;
 	
 	
 };

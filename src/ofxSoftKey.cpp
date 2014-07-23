@@ -19,11 +19,11 @@ ofxSoftKey::ofxSoftKey(int _key, ofBaseApp* _testapp) {
 	
 	
 	
-	textColor = 0x000000;;
-	textBGColor = 0xCCCCCC;
-	borderColor = 0x000000;
-	hoverColor = 0x999999;
-	clickColor = 0xFF0000;
+	textColor = ofColor(0);
+	textBGColor = ofColor(204);
+	borderColor = ofColor(0);
+	hoverColor = ofColor(153);
+	clickColor = ofColor(255, 0, 0);
 	isLastInRow = false;
 	
 	disableAppEvents();
@@ -95,17 +95,17 @@ void ofxSoftKey::draw() {
 	
 	// Draw the background
 	ofFill();
-	if(isMouseOver()) ofSetHexColor(hoverColor);
-	else ofSetHexColor(textBGColor);
+	if(isMouseOver()) ofSetColor(hoverColor);
+	else ofSetColor(textBGColor);
 	ofRect(x, y, width, height);
 	
 	// Draw the outline.
 	ofNoFill();
-	ofSetHexColor(borderColor);
+	ofSetColor(borderColor);
 	ofRect( x, y, width, height );
 	
 	// Draw the actual letter
-	ofSetHexColor(textColor);
+	ofSetColor(textColor);
 	ofDrawBitmapString(label, x+10, y+height-10);
 
 }
@@ -122,31 +122,31 @@ ofxSoftKey& ofxSoftKey::setKey(char key) {
 }
 
 //--------------------------------------------------------------
-ofxSoftKey& ofxSoftKey::setTextColor(int c) {
+ofxSoftKey& ofxSoftKey::setTextColor(ofColor c) {
 	this->textColor = c;
 	return *this;
 }
 
 //--------------------------------------------------------------
-ofxSoftKey& ofxSoftKey::setTextBGColor(int c) {
+ofxSoftKey& ofxSoftKey::setTextBGColor(ofColor c) {
 	this->textBGColor = c;
 	return *this;
 }
 
 //--------------------------------------------------------------
-ofxSoftKey& ofxSoftKey::setBorderColor(int c) {
+ofxSoftKey& ofxSoftKey::setBorderColor(ofColor c) {
 	this->borderColor = c;
 	return *this;
 }
 
 //--------------------------------------------------------------
-ofxSoftKey& ofxSoftKey::setHoverColor(int c) {
+ofxSoftKey& ofxSoftKey::setHoverColor(ofColor c) {
 	this->hoverColor = c;
 	return *this;
 }
 
 //--------------------------------------------------------------
-ofxSoftKey& ofxSoftKey::setClickColor(int c) {
+ofxSoftKey& ofxSoftKey::setClickColor(ofColor c) {
 	this->clickColor = c;
 	return *this;
 }
