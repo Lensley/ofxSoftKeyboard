@@ -21,6 +21,10 @@
 #define OFXSK_KEY_CAPS 10002
 #define OFXSK_KEY_DELETE 10003
 #define OFXSK_KEY_RETURN 10004
+#define OFXSK_KEY_AT 10005
+#define OFXSK_KEY_DOTCOM 10100
+#define OFXSK_KEY_DOTNET 10101
+#define OFXSK_KEY_DOTORG 10102
 
 #include "ofMain.h"
 #include "ofxMSAInteractiveObject.h"

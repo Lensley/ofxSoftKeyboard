@@ -16,6 +16,7 @@
 
 #define OFXSK_LAYOUT_KEYPAD 1
 #define OFXSK_LAYOUT_KEYBOARD_FULL 2
+#define OFXSK_LAYOUT_KEYBOARD_EMAIL 3
 
 class testApp;
 
